@@ -1,0 +1,154 @@
+# ~/.config/starship.toml
+
+add_newline = true
+format = "$sudo$time$all$username$hostname$character"
+
+[aws]
+disabled = true
+
+[battery]
+full_symbol = " "
+charging_symbol = " "
+discharging_symbol = " "
+
+[[battery.display]]
+# "bold red" style and discharging_symbol when capacity is between 0% and 10%
+threshold = 10
+style = "bold red"
+
+[[battery.display]]
+# "bold yellow" style and 💦 symbol when capacity is between 10% and 30%
+# when capacity is over 30%, the battery indicator will not be displayed
+threshold = 30
+style = "bold yellow"
+discharging_symbol = "💦 "
+
+[c]
+symbol = " "
+detect_extensions = ["c", "c++", "h", "hpp"]
+
+[character]
+# prompt character
+success_symbol = "[➜](bold green) "
+error_symbol = "[➜](bold red) "
+# vicmd only works with zsh and fish.
+vicmd_symbol = "[V](bold green) "
+
+[cmd_duration]
+min_time = 10_000  # Show command duration over 10 sec
+format = " took [$duration]($style)"
+show_notifications = true
+min_time_to_notify = 60_000 # Show notification if cmd takes >1m
+
+[conda]
+ignore_base = true
+symbol = "🐍"
+style = "dimmed green"
+format = "[$symbol$environment]($style) "
+disabled = false
+
+[directory]
+read_only = " "
+truncate_to_repo = false
+truncation_length = 4
+truncation_symbol = "…/"
+style = "fg:#96ef96"
+
+[docker_context]
+symbol = " "
+
+[git_branch]
+format = " [$symbol$branch]($style) "
+always_show_remote = true
+#ignore_branches = ["master", "main"]
+
+[git_commit]
+commit_hash_length = 8
+style = "bold white"
+
+[git_metrics]
+format = "[+$added]($added_style)/[-$deleted]($deleted_style) "
+disabled = false
+
+[git_state]
+format = '[\($state( $progress_current of $progress_total)\)]($style) '
+cherry_pick = "[🍒 PICKING](bold red)"
+
+[git_status]
+conflicted = "🏳"
+ahead = "🏎💨"
+behind = "😰"
+diverged = "😵"
+up_to_date = " ✓"
+untracked = "Untracked $count"
+stashed = "📦"
+modified = "📝"
+staged = '[++\($count\)](green)'
+renamed = "👅"
+deleted = "🗑"
+
+[golang]
+symbol = " "
+
+[haskell]
+symbol = " "
+
+[hg_branch]
+symbol = " "
+
+[hostname]
+ssh_only = false
+format = "<@[$hostname]($style)> "
+style = "dimmed white"
+disabled = false
+
+[line_break]
+disabled = false
+
+[localip]
+disabled = false
+ssh_only = true
+
+[memory_usage]
+format = "ram: ${ram}($style) "
+threshold = 70
+style = "bold dimmed white"
+disabled = true
+
+[nix_shell]
+symbol = " "
+
+[nodejs]
+symbol = " "
+
+[package]
+disabled = true
+
+[python]
+symbol = " "
+style = "bold bright-blue"
+format = '[· ${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+
+[rust]
+symbol = "⚙️ "
+style = "dimmed #ff3300"
+format = "[$symbol$version]($style) "
+
+[sudo]
+style = "dimmed green"
+symbol = "🔓"
+format = "[$symbol]($style)"
+disabled = false
+
+[time]
+use_12hr = false
+time_format = "%R" # Hour-minute format. Same to %H:%M.
+style = "bright-white"
+format = "$time($style) "
+disabled = false
+
+[username]
+show_always = true
+format = "[$user]($style) "
+style_root = "black bold"
+style_user = "bold green"
