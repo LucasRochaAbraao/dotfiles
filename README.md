@@ -48,3 +48,5 @@ Devour hides the terminal window before launching an external program, and unhid
 ## TODO
 
 - build and install script/makefile
+- add tiling window manager
+
