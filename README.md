@@ -45,6 +45,10 @@ Devour hides the terminal window before launching an external program, and unhid
 
 - A script that allows me to use a Huion tablet with Linux, located in `~/bin/huion.sh`.
 
+## Picom
+
+- `home/.config/picom/picom.conf` is the conf file for the Picom window compositor.
+
 ## TODO
 
 - build and install script/makefile
