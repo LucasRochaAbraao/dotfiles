@@ -6,11 +6,11 @@ A repo to keep my dotfiles, aiding deployment and provisioning.
 
 #### XFCE4 Terminal
 
--   XFCE4 terminal colorschemes in `~/.local/share/xfce4/terminal/colorschemes`.![XFCE4 Terminal Color Schemes](home/.local/share/xfce4/terminal/xfce4-term-colors.png)
+-   XFCE4 terminal colorschemes in `~/.local/share/xfce4/terminal/colorschemes`.![XFCE4 Terminal Color Schemes](reference/xfce4-term-colors.png)
 
 #### Starship Prompt
 
--   My starship terminal prompt config in `~/.config/starship.toml`. ![Starship Prompt](home/.config/starship_prompt.png)
+-   My starship terminal prompt config in `~/.config/starship.toml`. ![Starship Prompt](reference/starship_prompt.png)
 
 ## Apps and scripts
 
