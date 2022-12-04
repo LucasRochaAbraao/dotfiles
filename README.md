@@ -2,6 +2,23 @@
 
 A repo to keep my dotfiles, aiding deployment and provisioning.
 
+## install
+
+These dotfiles only contain config files, you need the following programs installed:
+
+-   nvim
+-   starship prompt
+-   picom window compositor
+-   xfce4 terminal
+
+To download and install the dotfiles:
+
+```console
+git clone git@github.com:LucasRochaAbraao/dotfiles.git
+cd dotfiles
+./install.sh
+```
+
 ## Themes
 
 #### XFCE4 Terminal
@@ -19,7 +36,7 @@ A repo to keep my dotfiles, aiding deployment and provisioning.
 -   Download vim plugins manager with: `curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim`
 -   add the following lines to `~/.config/nvim/init.vim` to share code between vim and nvim:
 
-```
+```console
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath=&runtimepath
 source ~/.vimrc
@@ -27,7 +44,7 @@ source ~/.vimrc
 
 -   Set an alias for nvim in your `.bashrc`:
 
-```
+```console
 alias vim="nvim"
 ```
 
@@ -45,6 +62,5 @@ alias vim="nvim"
 
 ## TODO
 
--   build and install script/makefile
 -   add zsh and ohmyzsh
 -   add tiling window manager
