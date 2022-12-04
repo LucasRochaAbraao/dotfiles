@@ -10,7 +10,7 @@ A repo to keep my dotfiles, aiding deployment and provisioning.
 
 #### Starship Prompt
 
--   My starship terminal prompt config in `~/.config/starship.toml`. ![Starship Prompt](reference/starship_prompt.png)
+-   Starship terminal prompt config in `~/.config/starship.toml`. ![Starship Prompt](reference/starship_prompt.png)
 
 ## Apps and scripts
 
@@ -33,13 +33,7 @@ alias vim="nvim"
 
 -   `.vimrc.plug` lives with `.vimrc` in home dir, it manages the vim plugins.
 
--   There's also a `skeleton.py` file to boilerplate new python scripts.
-
-#### Devour
-
-Devour hides the terminal window before launching an external program, and unhides it after quitting.
-
--   Enter devour directory and follow instructions in the `README.md` file.
+-   There's also a `.vim/skeleton.py` file to boilerplate new python scripts.
 
 #### Huion tablet
 
