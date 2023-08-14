@@ -149,6 +149,6 @@ disabled = false
 
 [username]
 show_always = true
-format = "[$user]($style) "
+format = "[$user]($style)"
 style_root = "black bold"
 style_user = "bold green"
