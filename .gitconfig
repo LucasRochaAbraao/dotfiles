@@ -3,3 +3,10 @@
 [user]
 	email = lucasrabraao@gmail.com
 	name = LucasRochaAbraao
+[core]
+    editor = vim
+[alias]
+    co = checkout
+    st = status
+[color]
+    ui = auto
