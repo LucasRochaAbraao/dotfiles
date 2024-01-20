@@ -1,0 +1,15 @@
+[alias]
+    co = checkout
+    st = status
+[color]
+    ui = auto
+[core]
+    editor = vim
+[credential]
+    helper = cache
+    helper = 'cache --timeout=3600'
+[init]
+	defaultBranch = main
+[user]
+	email = lucasrabraao@gmail.com
+	name = LucasRochaAbraao
