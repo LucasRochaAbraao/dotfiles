@@ -39,9 +39,6 @@ let python_highlight_all = 1
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
 
-" use skeleton code for *new* python projects
-au BufNewFile *.py 0r ~/.vim/skeleton.py
-
 " Call the vimrc.plug file
 if filereadable(expand("~/.vimrc.plug"))
     source ~/.vimrc.plug
