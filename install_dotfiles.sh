@@ -6,7 +6,7 @@
 
 
 source base.sh
-echo""
+echo ""
 
 echo_header "Setting up Neovim"
 . $DOTFILES/neovim/setup.sh
