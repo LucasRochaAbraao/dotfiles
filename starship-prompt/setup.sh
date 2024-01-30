@@ -21,6 +21,6 @@ echo_info "Setting up starship config files."
 
 set_env_var "STARSHIP_CONFIG" $starship_config
 mkdir -p $starship_config_dir
-ln -sf $DOTFILES/starship-prompt/starship.toml $starship_config
+cp -np $DOTFILES/starship-prompt/starship.toml $starship_config
 
 echo_good "Done."

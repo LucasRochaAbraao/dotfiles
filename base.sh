@@ -24,12 +24,10 @@ echo_bad() {
 
 echo_warn() {
     echo -e "${YELLOW}[!]${NC} $1"
-    echo ""
 }
 
 echo_info() {
     echo -e "${PURPLE}#${NC} $1"
-    echo ""
 }
 
 echo_header() {
@@ -38,13 +36,13 @@ echo_header() {
 }
 
 print_horizontal_line() {
-    echo ""
     printf "%s\n" "----------------------------------------"
 }
 
 is_package_installed() {
-    if dpkg -l | grep -q "$1"; then
-        echo_info "$package is already installed."
+    local cmd="$1"
+    if command -v $cmd &> /dev/null; then
+        echo_info "$cmd is already installed."
         return $OK_CODE
     fi
     return $ERROR_CODE
@@ -56,6 +54,23 @@ install_package() {
     if ! is_package_installed "$package"; then
         echo_info "Installing $package."
         sudo apt install -y "$package" > /dev/null 2>&1
+    fi
+}
+
+check_deps() {
+    local missing_deps=()
+
+    for dep in "$@"; do
+        if ! is_package_installed "$dep"; then
+        missing_deps+=("$dep")
+        fi
+    done
+
+    if [ ${#missing_deps[@]} -gt 0 ]; then
+        echo_info "Installing missing dependencies: ${missing_deps[*]}"
+        for dep in "${missing_deps[@]}"; do
+            install_package "$dep"
+        done
     fi
 }
 
@@ -80,9 +95,29 @@ set_env_var() {
     export "${envvar_name}=${envvar_value}"
 }
 
+set_alias() {
+    local alias_name="$1"
+    local alias_value="$2"
+    local bash_aliases="$HOME/.bash_aliases"
+
+    touch "$bash_aliases"
+
+    if grep -q "^alias $alias_name=" $bash_aliases; then
+        echo_info "'$alias_name' is already set."
+    else
+        echo_info "Setting new alias: '$alias_name=$alias_value'."
+        echo "alias ${alias_name}='${alias_value}'" >> $bash_aliases
+    fi
+
+    source "$bash_aliases"
+}
+
 
 # gets the dotfile script's root path, strips it to just the path portion,
 # cds to that path, uses pwd to return the abs path of the script.
 # In the end, the context is unwound so it ends up back in the running directory,
 # but with an environment variable DOTFILES containing the root path.
-export DOTFILES="$(cd "$(dirname "$0")" && pwd)"
+
+if [ -z "${DOTFILES}" ]; then
+    export DOTFILES="$(cd "$(dirname "$0")" && pwd)"
+fi

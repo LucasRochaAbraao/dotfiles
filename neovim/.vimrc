@@ -39,9 +39,4 @@ let python_highlight_all = 1
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
 
-" Call the vimrc.plug file
-if filereadable(expand("~/.vimrc.plug"))
-    source ~/.vimrc.plug
-endif
-
 
