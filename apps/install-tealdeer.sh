@@ -10,3 +10,5 @@ curl -o /usr/share/bash-completion/completions/tldr \
     https://raw.githubusercontent.com/dbrgn/tealdeer/main/completion/bash_tealdeer
 
 tldr --update > /dev/null 2>&1
+
+echo_good "Done."

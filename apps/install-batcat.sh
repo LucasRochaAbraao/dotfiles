@@ -8,3 +8,5 @@ echo_info "Overriding 'cat' command with an alias for 'batcat' command, \
 a 'cat' clone with syntax highlighting."
 
 set_alias "batcat" "cat"
+
+echo_good "Done."

@@ -1,5 +1,4 @@
 source "$DOTFILES/base.sh"
-# nvim config -> needs fixing, there is something wrong with .vimrc.plug
 
 nvim_config_dir="$HOME/.config/nvim"
 nvim_rc_init="${nvim_config_dir}/init.vim"
@@ -12,7 +11,7 @@ mkdir -p $nvim_config_dir
 cp -np "$DOTFILES/neovim/.vimrc" $nvim_rc_init
 cp -np "$DOTFILES/neovim/.vimrc.plug" $nvim_rc_plug
 
-check_deps "curl"
+ensure_deps "curl"
 
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim' > /dev/null 2>&1
@@ -28,6 +27,7 @@ EOL
 )
 
 echo "$vimrc_plug_config" >> $nvim_rc_init
+
 echo_warn "Open 'vim' and run: ':PlugInstall'"
 
 echo_good "Done."

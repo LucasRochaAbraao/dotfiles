@@ -12,6 +12,12 @@ ERROR_CODE=1
 NC='\e[0m' # No Color
 
 
+export BASH_RC="$HOME/.bashrc"
+
+if [ -z "${DOTFILES}" ]; then
+    export DOTFILES=$(realpath "$(dirname "$0")")
+fi
+
 echo_good() {
     echo -e "${GREEN}[OK]${NC} $1"
     echo ""
@@ -53,11 +59,12 @@ install_package() {
 
     if ! is_package_installed "$package"; then
         echo_info "Installing $package."
+        sudo apt update > /dev/null 2>&1
         sudo apt install -y "$package" > /dev/null 2>&1
     fi
 }
 
-check_deps() {
+ensure_deps() {
     local missing_deps=()
 
     for dep in "$@"; do
@@ -78,13 +85,12 @@ set_env_var() {
     local envvar_name="$1"
     local envvar_value="$2"
     local envvars_file="$HOME/.envvars"
-    local bash_rc="$HOME/.bashrc"
 
     touch "$envvars_file"
 
     # make sure envvars_file is being sourced from .bashrc
-    if ! grep -q "source $envvars_file" $bash_rc; then
-        echo "source $envvars_file" >> $bash_rc
+    if ! grep -q "source $envvars_file" $BASH_RC; then
+        echo "source $envvars_file" >> $BASH_RC
     fi
 
     # add the new env var to envvars_file so it's always sourced
@@ -112,12 +118,13 @@ set_alias() {
     source "$bash_aliases"
 }
 
-
-# gets the dotfile script's root path, strips it to just the path portion,
-# cds to that path, uses pwd to return the abs path of the script.
-# In the end, the context is unwound so it ends up back in the running directory,
-# but with an environment variable DOTFILES containing the root path.
-
-if [ -z "${DOTFILES}" ]; then
-    export DOTFILES="$(cd "$(dirname "$0")" && pwd)"
-fi
+show_usage() {
+    echo_info "Usage: $0 [-Hhpf]"
+    echo_info "  -H: Shows this help message and exits."
+    echo_info "  -f: Skips regular installation, and forces the installation of only the other options."
+    echo_info "  -p: Sets up Python with Poetry and pyenv."
+    echo_info "  -h: Sets up Huion tablet to work properly on Linux."
+    
+    local exit_code="${1:-1}"
+    exit $exit_code
+}
