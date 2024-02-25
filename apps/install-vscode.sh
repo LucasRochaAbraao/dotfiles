@@ -1,7 +1,5 @@
 # https://code.visualstudio.com/docs/setup/linux
 
-source "$DOTFILES/base.sh"
-
 echo_header "Installing vscode"
 
 ensure_deps "wget" "gpg" "apt-transport-https"

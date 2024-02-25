@@ -1,4 +1,3 @@
-source "$DOTFILES/base.sh"
 
 nvim_config_dir="$HOME/.config/nvim"
 nvim_rc_init="${nvim_config_dir}/init.vim"
@@ -14,7 +13,7 @@ cp -np "$DOTFILES/neovim/.vimrc.plug" $nvim_rc_plug
 ensure_deps "curl"
 
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim' > /dev/null 2>&1
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim' $QUIET
 
 # this multiline config will be appended to the end of nvimrc's init file,
 # with the correct user config path.

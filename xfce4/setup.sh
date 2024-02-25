@@ -1,4 +1,3 @@
-source "$DOTFILES/base.sh"
 
 xfce4_themes_dir="$HOME/.themes"
 xfce4_icons_dir="$HOME/.icons"

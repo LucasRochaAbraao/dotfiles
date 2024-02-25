@@ -16,7 +16,7 @@
 #   and adds whatever I need set into that section (avoid clutter)
 # - add a title section
 
-source base.sh
+source utils/base.sh
 echo ""
 
 PYTHON_SETUP=false
@@ -72,6 +72,10 @@ if [ "$INSTALL_CONFIG_FILES" = true ]; then
         . $DOTFILES/extras/setup_huion.sh
         print_horizontal_line
     fi
+
+    echo_header "Installing rustup toolchain and cargo"
+    . $DOTFILES/apps/setup-cargo.sh
+    print_horizontal_line
 
     for script in $DOTFILES/apps/install-*.sh; do
         . $script

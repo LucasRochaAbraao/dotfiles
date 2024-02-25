@@ -1,4 +1,3 @@
-source "$DOTFILES/base.sh"
 
 dotfiles_wallpaper_dir="$HOME/.themes"
 system_wallpaper_dir="$HOME/Pictures/wallpaper"

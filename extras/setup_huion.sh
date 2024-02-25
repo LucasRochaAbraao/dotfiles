@@ -1,4 +1,3 @@
-source "$DOTFILES/base.sh"
 
 home_bin_dir="$HOME/.local/bin"
 

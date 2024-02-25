@@ -1,4 +1,3 @@
-source "$DOTFILES/base.sh"
 
 starship_config_dir="$HOME/.config/starship"
 starship_config="$starship_config_dir/starship.toml"
@@ -8,14 +7,21 @@ if command -v starship &> /dev/null; then
     return $OK_CODE
 fi
 
-curl -sS https://starship.rs/install.sh | sh > /dev/null 2>&1
+
+echo_info "Installing Starship."
+
+# The -s option allows passing options to the script from the sh
+# command line and the -- is then required to separate the sh
+# options from the options passed to the script.
+curl -sS https://starship.rs/install.sh | sh -s -- -y $QUIET
+
 if [ $? -eq 0 ]; then
     echo_info "Starship installed successfully!"
 else
     echo_bad "Error: Starship installation failed. Install it manually by running:"
     echo_warn "curl -sS https://starship.rs/install.sh | sh"
+    return $ERROR_CODE
 fi
-
 
 echo_info "Setting up starship config files."
 

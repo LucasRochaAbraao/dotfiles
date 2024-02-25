@@ -1,4 +1,3 @@
-source "$DOTFILES/base.sh"
 
 git_config="$HOME/.gitconfig"
 

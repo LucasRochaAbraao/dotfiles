@@ -1,10 +1,8 @@
 # https://python-poetry.org/docs/basic-usage/
 
-source "$DOTFILES/base.sh"
-
 ensure_deps "pipx"
 
-pipx install poetry 2>&1
+pipx install poetry $QUIET
 
 poetry completions bash >> ~/.bash_completion
 

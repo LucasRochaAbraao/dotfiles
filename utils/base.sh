@@ -11,6 +11,7 @@ OK_CODE=0
 ERROR_CODE=1
 NC='\e[0m' # No Color
 
+export QUIET="> /dev/null 2>&1"
 
 export BASH_RC="$HOME/.bashrc"
 
@@ -37,7 +38,7 @@ echo_info() {
 }
 
 echo_header() {
-    echo -e "${PURPLE}-->${NC} ${GRAY}${BOLD}${UNDER}$1${NC}"
+    echo -e "${PURPLE}->${NC} ${GRAY}${BOLD}${UNDER}$1${NC}"
     echo ""
 }
 
@@ -57,10 +58,12 @@ is_package_installed() {
 install_package() {
     local package=$1
 
+    . $DOTFILES/utils/distro.sh
+    detect_distro
+    load_package_manager
+
     if ! is_package_installed "$package"; then
-        echo_info "Installing $package."
-        sudo apt update > /dev/null 2>&1
-        sudo apt install -y "$package" > /dev/null 2>&1
+        install $package
     fi
 }
 
@@ -74,7 +77,7 @@ ensure_deps() {
     done
 
     if [ ${#missing_deps[@]} -gt 0 ]; then
-        echo_info "Installing missing dependencies: ${missing_deps[*]}"
+        echo_info "Checking for missing dependencies: ${missing_deps[*]}"
         for dep in "${missing_deps[@]}"; do
             install_package "$dep"
         done

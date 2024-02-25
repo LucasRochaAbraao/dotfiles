@@ -1,4 +1,3 @@
-source "$DOTFILES/base.sh"
 
 echo_header "Installing ripgrep"
 

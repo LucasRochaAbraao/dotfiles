@@ -1,4 +1,3 @@
-source "$DOTFILES/base.sh"
 
 echo_header "Installing pyenv"
 . $DOTFILES/python/pyenv.sh
