@@ -4,11 +4,9 @@
 # - You will be asked for sudo password when installing packages.
 #
 # TODO:
-# - verbose/debug var (it currently suppresses everything for a clean look)
 # - setup git oauth
 # - fonts
 # - adapt for an arch installation
-# - vscode
 # - fun cli apps flag (fortune, cowsay, etc)
 # - ssh config?
 # - aliases ?
