@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 
 starship_config_dir="$HOME/.config/starship"
 starship_config="$starship_config_dir/starship.toml"
@@ -13,7 +14,7 @@ echo_info "Installing Starship."
 # The -s option allows passing options to the script from the sh
 # command line and the -- is then required to separate the sh
 # options from the options passed to the script.
-curl -sS https://starship.rs/install.sh | sh -s -- -y $QUIET
+run_quietly curl -sS https://starship.rs/install.sh | sh -s -- -y
 
 if [ $? -eq 0 ]; then
     echo_info "Starship installed successfully!"

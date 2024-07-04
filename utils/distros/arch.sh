@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # tested on arch linux <kernel> | manjaro-xfce-23.1.3
 
 install() {
@@ -7,5 +9,5 @@ install() {
     # Optionally synchronize and update the package databases, needs testing
     # paru -Sy --quiet
 
-    paru -S --noconfirm --needed "$package" $QUIET
+    run_quietly paru -S --noconfirm --needed "$package"
 }

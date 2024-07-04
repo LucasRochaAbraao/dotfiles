@@ -1,8 +1,10 @@
+#!/usr/bin/env bash
+
 # https://github.com/pyenv/pyenv
 
 ensure_deps "curl"
 
-curl https://pyenv.run | bash $QUIET
+run_quietly curl https://pyenv.run | bash
 
 pyenv_config=$(cat <<'EOL'
 export PYENV_ROOT="$HOME/.pyenv"

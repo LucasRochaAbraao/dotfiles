@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 
 echo_header "Installing pyenv"
 . $DOTFILES/python/pyenv.sh

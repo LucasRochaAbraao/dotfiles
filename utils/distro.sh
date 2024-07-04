@@ -1,29 +1,59 @@
+#!/usr/bin/env bash
 
-detect_distro() {
+try_lsb_release() {
+    local distro_name=$(lsb_release -i | awk '{print $3}')
+    if [ -z "$distro_name" ]; then
+        return $ERROR_CODE
+    fi
+    echo "$distro_name - lsb_release"
+}
+
+try_hostnamectl() {
+    local distro_name=$(hostnamectl status | grep 'Operating' | awk '{print $3}')
+    if [ -z "$distro_name" ]; then
+        return $ERROR_CODE
+    fi
+    echo "$distro_name - hostnamectl"
+}
+
+try_os_release() {
     if [ -f /etc/os-release ]; then
         . /etc/os-release
-        DISTRO=$ID
-        echo_info "'$DISTRO' detected, loading the appropriate package manager."
+        distro_name=$ID
+        if [ -z "$distro_name" ]; then
+            return $ERROR_CODE
+        fi
+        echo "$distro_name - os-release"
     else
-        echo_warn "Wasn't able to detect the Linux distribution."
-        exit $ERROR_CODE
+        return $ERROR_CODE
     fi
 }
 
+detect_distro() {
+    DISTRO=$($try_hostnamectl || $try_lsb_release || $try_os_release)
+    if [ -z "$DISTRO" ]; then
+        echo_bad "Distribution not found."
+        return $ERROR_CODE
+    fi
+    
+    return $OK_CODE
+}
+
 load_package_manager() {
-    case $DISTRO in
-        debian|ubuntu)
+    distro_lower=$(echo "$DISTRO" | tr '[:upper:]' '[:lower:]')
+
+    case $distro_lower in
+        *debian*|*ubuntu*)
             source $DOTFILES/utils/distros/debian.sh
             ;;
-        fedora|centos|rhel|ol)
-            source $DOTFILES/utils/distros/fedora.sh
+        *fedora*|*centos*|*rhel*|*oracle*|*ol*)
+            source $DOTFILES/utils/distros/rhel.sh
             ;;
-        arch|manjaro)
+        *arch*|*manjaro*)
             source $DOTFILES/utils/distros/arch.sh
             ;;
         *)
-            echo_info "Unsupported distribution: $DISTRO"
-            exit $ERROR_CODE
+            echo_bad_die "Unsupported distribution: ${DISTRO}"
             ;;
     esac
 }

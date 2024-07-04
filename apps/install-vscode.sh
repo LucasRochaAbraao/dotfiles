@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # https://code.visualstudio.com/docs/setup/linux
 
 echo_header "Installing vscode"

@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 
 echo_header "Installing eza"
 

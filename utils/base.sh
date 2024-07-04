@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 
 RED='\e[31m'
 GREEN='\e[32m'
@@ -11,13 +12,16 @@ OK_CODE=0
 ERROR_CODE=1
 NC='\e[0m' # No Color
 
-export QUIET="> /dev/null 2>&1"
-
 export BASH_RC="$HOME/.bashrc"
 
 if [ -z "${DOTFILES}" ]; then
     export DOTFILES=$(realpath "$(dirname "$0")")
 fi
+
+echo_header() {
+    echo -e "${PURPLE}->${NC} ${GRAY}${BOLD}${UNDER}$1${NC}"
+    echo ""
+}
 
 echo_good() {
     echo -e "${GREEN}[OK]${NC} $1"
@@ -37,13 +41,18 @@ echo_info() {
     echo -e "${PURPLE}#${NC} $1"
 }
 
-echo_header() {
-    echo -e "${PURPLE}->${NC} ${GRAY}${BOLD}${UNDER}$1${NC}"
-    echo ""
+echo_bad_die() {
+    echo_bad $@
+    exit
 }
 
 print_horizontal_line() {
     printf "%s\n" "----------------------------------------"
+}
+
+run_quietly() {
+    # this uses eval so piped commands get interpreted correctly
+    eval "$@" > /dev/null 2>&1
 }
 
 is_package_installed() {
@@ -59,11 +68,13 @@ install_package() {
     local package=$1
 
     . $DOTFILES/utils/distro.sh
-    detect_distro
-    load_package_manager
+    detect_distro || echo_bad_die
+    load_package_manager && echo_good "'$DISTRO' detected, appropriate package manager loaded."
 
     if ! is_package_installed "$package"; then
-        install $package
+        if ! install "$package"; then  # attempts to install, and enters condition if failed
+            echo_bad_die "Failed to install $package."
+        fi
     fi
 }
 

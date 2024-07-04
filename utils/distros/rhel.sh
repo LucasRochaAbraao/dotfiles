@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # tested on Fedora Workstation 39 | centos stream 9 | rhel 9.3 | ol 9.3 | rocky linux 9.3
 
 install() {
@@ -5,7 +7,7 @@ install() {
 
     echo_info "Installing $package."
 
-    sudo dnf makecache $QUIET
+    run_quietly sudo dnf makecache
 
-    sudo dnf install -y "$package" $QUIET
+    run_quietly sudo dnf install -y "$package"
 }

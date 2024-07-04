@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 
 git_config="$HOME/.gitconfig"
 

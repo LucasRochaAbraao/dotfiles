@@ -1,10 +1,11 @@
+#!/usr/bin/env bash
 
 ensure_deps "curl" "build-essential"
 
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > install.sh
 
 sudo chmod +x install.sh
-./install.sh -yq $QUIET
+run_quietly ./install.sh -yq
 
 source "$HOME/.cargo/env"
 

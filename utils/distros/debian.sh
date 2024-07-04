@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # tested on debian 12 bookworm | ubuntu 23.10
 
 install() {
@@ -5,7 +7,7 @@ install() {
 
     echo_info "Installing $package."
 
-    sudo apt update $QUIET
+    run_quietly sudo apt update
 
-    sudo apt install -y "$package" $QUIET
+    run_quietly sudo apt install -y "$package"
 }

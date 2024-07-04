@@ -4,7 +4,6 @@
 # - You will be asked for sudo password when installing packages.
 #
 # TODO:
-# - setup git oauth
 # - fonts
 # - adapt for an arch installation
 # - fun cli apps flag (fortune, cowsay, etc)
@@ -49,17 +48,17 @@ done
 if [ "$INSTALL_THEMES" = true ]; then
     # customization
     echo_header "Setting up XFCE4 Themes"
-    . $DOTFILES/xfce4/setup.sh
+    . "$DOTFILES"/xfce4/setup.sh
     print_horizontal_line
 
     echo_header "Setting up Wallpaper directory"
-    . $DOTFILES/wallpaper/setup.sh
+    . "$DOTFILES"/wallpaper/setup.sh
     print_horizontal_line
 fi
 
 if [ "$PYTHON_SETUP" = true ]; then
     echo_header "Setting up Python"
-    . $DOTFILES/python/setup.sh
+    . "$DOTFILES"/python/setup.sh
     print_horizontal_line
 fi
 
@@ -67,29 +66,29 @@ if [ "$INSTALL_CONFIG_FILES" = true ]; then
     # apps installation
     if [ "$HUION_SETUP" = true ]; then
         echo_header "Setting up Huion Tablet"
-        . $DOTFILES/extras/setup_huion.sh
+        . "$DOTFILES"/extras/setup_huion.sh
         print_horizontal_line
     fi
 
     echo_header "Installing rustup toolchain and cargo"
-    . $DOTFILES/apps/setup-cargo.sh
+    . "$DOTFILES"/apps/setup-cargo.sh
     print_horizontal_line
 
-    for script in $DOTFILES/apps/install-*.sh; do
-        . $script
+    for script in "$DOTFILES"/apps/install-*.sh; do
+        . "$script"
         print_horizontal_line
     done
 
     echo_header "Setting up Neovim"
-    . $DOTFILES/neovim/setup.sh
+    . "$DOTFILES"/neovim/setup.sh
     print_horizontal_line
 
     echo_header "Setting up Git"
-    . $DOTFILES/git/setup.sh
+    . "$DOTFILES"/git/setup.sh
     print_horizontal_line
 
     echo_header "Setting up Starship Prompt"
-    . $DOTFILES/starship-prompt/setup.sh
+    . "$DOTFILES"/starship-prompt/setup.sh
     print_horizontal_line
 fi
 
