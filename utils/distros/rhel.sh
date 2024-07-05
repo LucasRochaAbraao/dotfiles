@@ -9,5 +9,7 @@ install() {
 
     run_quietly sudo dnf makecache
 
+    run_quietly sudo dnf check-update
+
     run_quietly sudo dnf install -y "$package"
 }

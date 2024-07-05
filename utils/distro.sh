@@ -30,7 +30,7 @@ try_os_release() {
 }
 
 detect_distro() {
-    DISTRO=$($try_hostnamectl || $try_lsb_release || $try_os_release)
+    DISTRO=$(try_hostnamectl || try_lsb_release || try_os_release)
     if [ -z "$DISTRO" ]; then
         echo_bad "Distribution not found."
         return $ERROR_CODE
@@ -45,9 +45,11 @@ load_package_manager() {
     case $distro_lower in
         *debian*|*ubuntu*)
             source $DOTFILES/utils/distros/debian.sh
+            ensure_deps "build-essential"
             ;;
         *fedora*|*centos*|*rhel*|*oracle*|*ol*)
             source $DOTFILES/utils/distros/rhel.sh
+            ensure_deps "gcc"
             ;;
         *arch*|*manjaro*)
             source $DOTFILES/utils/distros/arch.sh

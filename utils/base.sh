@@ -67,10 +67,6 @@ is_package_installed() {
 install_package() {
     local package=$1
 
-    . $DOTFILES/utils/distro.sh
-    detect_distro || echo_bad_die
-    load_package_manager && echo_good "'$DISTRO' detected, appropriate package manager loaded."
-
     if ! is_package_installed "$package"; then
         if ! install "$package"; then  # attempts to install, and enters condition if failed
             echo_bad_die "Failed to install $package."

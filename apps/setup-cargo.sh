@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-ensure_deps "curl" "build-essential"
+ensure_deps "curl"
 
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > install.sh
 

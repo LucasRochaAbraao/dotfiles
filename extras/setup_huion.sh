@@ -2,8 +2,6 @@
 
 home_bin_dir="$HOME/.local/bin"
 
-echo_header "Setting up huion tablet script"
-
 install_package xinput
 
 echo_info "Copying huion.sh to '$home_bin_dir'. In the future, run it with: 'huion_setup'"

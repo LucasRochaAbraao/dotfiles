@@ -21,6 +21,11 @@ HUION_SETUP=false
 INSTALL_CONFIG_FILES=true
 INSTALL_THEMES=true
 
+. $DOTFILES/utils/distro.sh
+detect_distro || echo_bad_die
+load_package_manager && echo_good "'$DISTRO' detected, appropriate package manager loaded."
+
+
 while getopts ":Hhpf" opt; do
     case $opt in
         H) # help
