@@ -7,11 +7,13 @@
 # - fonts
 # - adapt for an arch installation
 # - fun cli apps flag (fortune, cowsay, etc)
+# - add other desktop apps
 # - ssh config?
 # - aliases ?
 # - def a func that creates a section in bashrc for dotfiles,
 #   and adds whatever I need set into that section (avoid clutter)
 # - add a title section
+# - make xfce customization optional
 
 source utils/base.sh
 echo ""

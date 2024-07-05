@@ -45,7 +45,7 @@ load_package_manager() {
     case $distro_lower in
         *debian*|*ubuntu*)
             source $DOTFILES/utils/distros/debian.sh
-            ensure_deps "build-essential"
+            ensure_deps "build-essential" "apt-transport-https"
             ;;
         *fedora*|*centos*|*rhel*|*oracle*|*ol*)
             source $DOTFILES/utils/distros/rhel.sh

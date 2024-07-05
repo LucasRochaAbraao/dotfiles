@@ -66,12 +66,7 @@ is_package_installed() {
 
 install_package() {
     local package=$1
-
-    if ! is_package_installed "$package"; then
-        if ! install "$package"; then  # attempts to install, and enters condition if failed
-            echo_bad_die "Failed to install $package."
-        fi
-    fi
+    is_package_installed "$package" || install "$package" || echo_bad_die "Failed to install $package."
 }
 
 ensure_deps() {
